@@ -16,4 +16,6 @@ function stat(path) {
   });
 }
 
-stat("./").then((paths) => console.log(paths));
+stat("./").then((stat) => {
+  console.log(stat.isFile());
+});
