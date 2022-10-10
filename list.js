@@ -31,3 +31,12 @@ function stat(path) {
     });
   });
 }
+
+async function list() {
+  const paths = await readdir("./");
+  const statsPromises = paths.map(async (path) => await stat(path));
+  const stats = await Promise.all(statsPromises);
+  console.log(stats);
+}
+
+list();
