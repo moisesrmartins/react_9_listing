@@ -36,7 +36,12 @@ async function list() {
   const paths = await readdir("./");
   const statsPromises = paths.map(async (path) => await stat(path));
   const stats = await Promise.all(statsPromises);
-  console.log(stats);
+  const pathIsFile = stats.map((path) => ({
+    path: path.path,
+    isFile: path.stat.isFile(),
+  }));
+  const files = pathIsFile.filter((path) => path.isFile);
+  console.log(files);
 }
 
 list();
